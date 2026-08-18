@@ -1,0 +1,46 @@
+---
+import "../styles/global.css";
+
+const whatsapp = "525659898908";
+const productos = [
+  { id: "cables", nombre: "Organizador magnético de cables", categoria: "Hogar", precio: 129, color: "lime", icono: "⌁", descripcion: "Ordena cargadores y cables sin perforar ni complicarte." },
+  { id: "soporte", nombre: "Soporte plegable para celular", categoria: "Escritorio", precio: 189, color: "blue", icono: "▱", descripcion: "Ángulo ajustable para videollamadas, recetas y escritorio." },
+  { id: "luz", nombre: "Luz LED con sensor de movimiento", categoria: "Hogar", precio: 249, color: "orange", icono: "◒", descripcion: "Luz práctica para clósets, pasillos y espacios pequeños." },
+  { id: "limpieza", nombre: "Kit de limpieza para electrónicos", categoria: "Escritorio", precio: 179, color: "pink", icono: "✦", descripcion: "Cepillo, paño y herramientas para mantener tus gadgets limpios." },
+  { id: "laptop", nombre: "Base plegable para laptop", categoria: "Escritorio", precio: 329, color: "violet", icono: "⌂", descripcion: "Eleva la pantalla y libera espacio en tu mesa de trabajo." },
+  { id: "pelusa", nombre: "Rodillo quitapelusa reutilizable", categoria: "Hogar", precio: 159, color: "yellow", icono: "◎", descripcion: "Para ropa, sillones y camas; se limpia y vuelve a usar." },
+  { id: "bebedero", nombre: "Bebedero portátil para mascotas", categoria: "Mascotas", precio: 219, color: "cyan", icono: "⌇", descripcion: "Agua en movimiento para paseos, viajes y caminatas." },
+  { id: "bolsas", nombre: "Dispensador de bolsas para paseo", categoria: "Mascotas", precio: 119, color: "green", icono: "□", descripcion: "Compacto, ligero y fácil de llevar junto a la correa." },
+];
+const wa = (text) => `https://wa.me/${whatsapp}?text=${encodeURIComponent(text)}`;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content="VEIA Market: objetos útiles para hacer más fácil tu día." />
+    <title>VEIA MARKET · Objetos útiles, sin vueltas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <header class="header"><a class="brand" href="#inicio"><b>V</b> VEIA <i>/ MARKET</i></a><nav><a href="#catalogo">Catálogo</a><a href="#como-funciona">Cómo funciona</a></nav><button class="cart-open" data-open-cart>Carrito <span data-count>0</span></button></header>
+    <main>
+      <section class="hero" id="inicio"><div><p class="eyebrow">VEIA MARKET / selección inicial</p><h1>Pequeñas cosas.<br /><em>Grandes atajos.</em></h1><p class="hero-copy">Objetos útiles para el hogar, el escritorio y tus mascotas. Elegidos para resolver algo concreto sin llenar tu casa de cosas innecesarias.</p><a class="button" href="#catalogo">Explorar productos <span>↓</span></a></div><div class="hero-art"><span class="float-card card-a">01 / útil</span><span class="float-card card-b">02 / simple</span><div class="art-sun">✳</div><div class="art-label">TEST<br />COLLECTION<br /><small>MX / 001</small></div></div></section>
+      <section class="catalogo" id="catalogo"><div class="section-head"><div><p class="eyebrow">01 / catálogo</p><h2>Lo que puede<br /><em>hacerte el día.</em></h2></div><p>Una selección pequeña para probar, aprender y encontrar nuestros primeros favoritos.</p></div><div class="filters" data-filters><button class="active" data-filter="Todos">Todos</button><button data-filter="Hogar">Hogar</button><button data-filter="Escritorio">Escritorio</button><button data-filter="Mascotas">Mascotas</button></div><div class="products" data-products>{productos.map((p) => <article class={`product ${p.color}`} data-category={p.categoria}><div class="product-art"><span>{p.icono}</span><small>{p.categoria} / 00{productos.indexOf(p)+1}</small></div><div class="product-info"><p class="product-cat">{p.categoria}</p><h3>{p.nombre}</h3><p>{p.descripcion}</p><div class="product-buy"><strong>${p.precio} <small>MXN</small></strong><button data-add data-id={p.id} data-name={p.nombre} data-price={p.precio}>Agregar +</button></div></div></article>)}</div></section>
+      <section class="how" id="como-funciona"><div class="eyebrow">02 / sin complicaciones</div><div class="how-grid"><h2>Primero probamos.<br /><em>Luego crecemos.</em></h2><div class="steps"><div><b>01</b><h3>Elige</h3><p>Agrega al carrito los objetos que te interesen.</p></div><div><b>02</b><h3>Confirma</h3><p>Te escribimos por WhatsApp para confirmar existencia y envío.</p></div><div><b>03</b><h3>Recibe</h3><p>Coordinamos el pago y mandamos tu pedido.</p></div></div></div></section>
+      <section class="invite"><p class="eyebrow">03 / estamos aprendiendo</p><h2>¿Qué producto te<br /><em>gustaría encontrar?</em></h2><a class="button button-dark" href={wa("Hola VEIA MARKET, quiero sugerir un producto")}>Sugerir un producto <span>↗</span></a></section>
+    </main>
+    <footer><span>© {new Date().getFullYear()} VEIA MARKET</span><span>Selección inicial · Guadalajara, MX</span></footer>
+    <aside class="cart" data-cart><div class="cart-head"><h2>Tu carrito</h2><button data-close-cart>×</button></div><div class="cart-items" data-items><p class="empty">Todavía no agregas nada.<br />Elige algo del catálogo.</p></div><div class="cart-bottom"><div><span>Total estimado</span><strong data-total>$0 MXN</strong></div><a class="button button-dark" data-checkout href={wa("Hola VEIA MARKET, quiero hacer un pedido")}>Pedir por WhatsApp <span>↗</span></a></div></aside><div class="scrim" data-close-cart></div>
+    <script is:inline>
+      const phone = "525659898908"; const cart = new Map(); const count = document.querySelector('[data-count]'); const items = document.querySelector('[data-items]'); const total = document.querySelector('[data-total]'); const drawer = document.querySelector('[data-cart]'); const scrim = document.querySelector('.scrim');
+      const money = n => `$${n.toLocaleString('es-MX')} MXN`;
+      function render(){let qty=0,sum=0; for(const p of cart.values()){qty+=p.qty;sum+=p.price*p.qty;} count.textContent=qty; total.textContent=money(sum); items.innerHTML=cart.size?[...cart.values()].map(p=>`<div class="cart-row"><div><b>${p.name}</b><small>${p.qty} × ${money(p.price)}</small></div><button data-remove="${p.id}">×</button></div>`).join(''):'<p class="empty">Todavía no agregas nada.<br />Elige algo del catálogo.</p>'; document.querySelector('[data-checkout]').href=`https://wa.me/${phone}?text=${encodeURIComponent('Hola VEIA MARKET, quiero pedir:\n'+[...cart.values()].map(p=>`- ${p.qty} × ${p.name}`).join('\n')+'\nTotal estimado: '+money(sum))}`; document.querySelectorAll('[data-remove]').forEach(b=>b.onclick=()=>{cart.delete(b.dataset.remove);render()});}
+      document.querySelectorAll('[data-add]').forEach(b=>b.onclick=()=>{const p={id:b.dataset.id,name:b.dataset.name,price:Number(b.dataset.price),qty:cart.get(b.dataset.id)?.qty||0};p.qty++;cart.set(p.id,p);render();drawer.classList.add('open');scrim.classList.add('open')}); document.querySelector('[data-open-cart]').onclick=()=>{drawer.classList.add('open');scrim.classList.add('open')}; document.querySelectorAll('[data-close-cart]').forEach(b=>b.onclick=()=>{drawer.classList.remove('open');scrim.classList.remove('open')}); document.querySelectorAll('[data-filter]').forEach(b=>b.onclick=()=>{document.querySelectorAll('[data-filter]').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.querySelectorAll('[data-products] .product').forEach(p=>p.hidden=b.dataset.filter!=='Todos'&&p.dataset.category!==b.dataset.filter)}); render();
+    </script>
+  </body>
+</html>
